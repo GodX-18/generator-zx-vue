@@ -1,6 +1,11 @@
 const Generator = require("yeoman-generator");
+const _ = require("lodash");
 const path = require("path");
+const fs = require("fs");
+const chalk = require("chalk");
 const utils = require("./utils");
+const { spawn } = require("child_process");
+_.extend(Generator.prototype, require("yeoman-generator/lib/actions/install"));
 
 module.exports = class extends Generator {
   prompting() {
@@ -8,11 +13,19 @@ module.exports = class extends Generator {
       {
         type: "input",
         name: "name",
-        message: "Your project name",
+        message: "你的项目名称：",
         default: this.appname // appname 为项目生成目录名称
+      },
+      {
+        type: "input",
+        name: "description",
+        message: "你的项目描述:",
+        default: ""
       }
     ]).then((answers) => {
       this.answers = answers;
+      this.log(chalk.green("name: ", answers.name));
+      this.log(chalk.green("description: ", answers.description));
     });
   }
   writing() {
@@ -21,5 +34,14 @@ module.exports = class extends Generator {
     arr.forEach((item) => {
       this.fs.copyTpl(this.templatePath(item), this.destinationPath(item), this.answers);
     });
+  }
+  install() {
+    this.installDependencies({
+      yarn: { force: true },
+      npm: false
+    });
+  }
+  end() {
+    this.log(chalk.green("恭喜🎉，安装完成!"));
   }
 };

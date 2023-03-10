@@ -1,6 +1,6 @@
 {
-  "name": "generator-zx-vue3",
-  "version": "1.0.3",
+  "name": "generator-zx-vue",
+  "version": "1.0.31",
   "description": "a vue scaffolding producted by zx",
   "homepage": "https://github.com/GodX-18/generator-zx-vue",
   "repository": "https://github.com/GodX-18/generator-zx-vue.git",
@@ -21,7 +21,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "yeoman-generator": "^5.7.0"
+    "chalk": "^2.1.0",
+    "lodash": "^4.17.21",
+    "yeoman-generator": "^5.8.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
