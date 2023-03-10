@@ -25,7 +25,7 @@ yo zx-vue3
 
 ## License
 
-MIT © [子咻](https://github.com/CodeLittlePrince)
+MIT © [烜](https://github.com/godx-18)
 
 
 [npm-image]: https://badge.fury.io/js/generator-zx-vue3.svg
