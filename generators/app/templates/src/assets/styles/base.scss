@@ -1,0 +1,47 @@
+body {
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.el-form-item__label {
+    font-size: 16px !important;
+    font-family: PingFangSC-Regular, PingFang SC !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    line-height: 22px !important;
+}
+
+.primary_btn {
+    width: 108px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    background: #4286f3;
+    text-align: center;
+    color: #fff;
+    margin: 20px;
+}
+
+.common_btn {
+    // width: 108px;
+    padding: 0 30px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    text-align: center;
+    color: #4286f3;
+    margin: 20px;
+    border: 1px solid #4286f3;
+}
+
+.upload_btn {
+    width: 128px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background: #4286f3;
+    border: 1px solid #4286f3;
+}
