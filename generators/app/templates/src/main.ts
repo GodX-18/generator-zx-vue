@@ -8,7 +8,6 @@ import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 
-import Pancel from "@/components/Pancel.vue";
 
 import App from "./App.vue";
 import router from "./router";
@@ -23,7 +22,6 @@ const app = createApp(App);
 
 app.config.globalProperties.$test = 'zx'
 
-app.component("Pancel", Pancel);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
