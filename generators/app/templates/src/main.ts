@@ -11,7 +11,7 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 
 import App from "./App.vue";
 import router from "./router";
-// import "@/utils/permission";
+import "@/utils/permission";
 import "element-plus/theme-chalk/src/index.scss";
 
 import "normalize.css";

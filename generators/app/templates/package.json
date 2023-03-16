@@ -42,5 +42,8 @@
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.0",
     "vue-tsc": "^1.0.12"
+  },
+  "engines": {
+    "node": ">=16"
   }
 }
