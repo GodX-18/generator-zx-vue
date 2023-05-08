@@ -20,25 +20,26 @@
         />
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">哎呀!</div>
+        <div class="bullshit__oops">哎呀！页面不见了！</div>
         <div class="bullshit__info">
-          请检查您输入的URL是否正确。也有可能是您的票据已经过期，请单击按钮返回一网通办重新获取票据。
+          请检查您输入的URL是否正确。也有可能是您的票据已经过期，请单击按钮返回首页。
         </div>
-        <a
-          href="https://one.sipac.gov.cn/szgyyqwsdt/szyqzwdt/html/pages/default/search_result.html?info=%E6%8E%92%E6%B0%B4"
-          class="bullshit__return-home"
-          >返回</a
-        >
+        <div class="bullshit__return-home" @click="goHome">返回</div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const router = useRouter();
 // 引入本地图片
 function getImageUrl(name: string) {
   return new URL(`../../assets/images/404_images/${name}.png`, import.meta.url)
     .href;
+}
+
+function goHome() {
+  router.push("/");
 }
 </script>
 
