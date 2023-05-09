@@ -5,13 +5,13 @@ const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 import ElementPlus from "element-plus";
 import zhCn from "element-plus/lib/locale/lang/zh-cn";
-import "virtual:svg-icons-register";
+
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 
 
 import App from "./App.vue";
 import router from "./router";
-import "@/utils/permission";
+// import "@/utils/permission";
 import "element-plus/theme-chalk/src/index.scss";
 
 import "normalize.css";

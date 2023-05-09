@@ -5,43 +5,14 @@ import type {
   AxiosResponse,
   AxiosHeaders,
 } from "axios";
-import { ElMessage, ElLoading } from "element-plus";
-import { isLoad } from "@/utils";
+import { ElMessage } from "element-plus";
 
-// 不需要 loading 的接口
-const noloadList = [""];
+import router from "@/router";
 
 interface Result<T> {
-  code: number;
+  success: boolean;
   data: T;
-  msg: string;
-}
-
-let reqNum = 0;
-let loadingInstance: any;
-
-function startLoading() {
-  if (reqNum === 0) {
-    loadingInstance = ElLoading.service({ fullscreen: true });
-    console.log("开始loading");
-  }
-  reqNum++;
-}
-
-function endLoading() {
-  // 延迟 300ms 再调用 closeLoading 方法, 合并300ms内的请求
-  // 当有请求中嵌套请求的情况也也可开启延时来解决
-  // setTimeout(closeLoading, 300)
-  closeLoading();
-}
-
-function closeLoading() {
-  if (reqNum <= 0) return;
-  reqNum--;
-  if (reqNum === 0) {
-    loadingInstance.close();
-    console.log("结束loading");
-  }
+  errorMessage: string;
 }
 
 // 导出Request类，可以用来自定义传递配置来创建实例
@@ -60,7 +31,6 @@ export class Request {
 
     this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        isLoad(config.url as string, noloadList) && startLoading();
         // 一般会请求拦截里面加token，用于后端的验证
         const token = localStorage.getItem("token") as string;
         if (token) {
@@ -80,18 +50,24 @@ export class Request {
 
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
-        endLoading();
-        if (res.data.code !== 200) {
+        if (!res.data.success) {
           ElMessage({
             type: "error",
-            message: res.data.msg || "接口报错，请检查网络或联系管理员！",
+            message: res.data.errorMessage || '接口报错，请检查网络或联系管理员！',
           });
         }
         // 系统如果有自定义code也可以在这里处理
         return res.data;
       },
       (err: any) => {
-        endLoading();
+        // cookie 过期重新获取
+        if (err.code === "ERR_NETWORK") {
+          (axios as any).get("/czwspfDeclare/login", {
+            params: router.currentRoute.value.query,
+          });
+          location.reload();
+          return;
+        }
         // 这里用来处理http常见错误，进行全局提示
         let message = "";
         switch (err.response.status) {

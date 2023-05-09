@@ -8,7 +8,6 @@ import IconsResolver from "unplugin-icons/resolver";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 const pathSrc = path.resolve(__dirname, "src");
 
 // https://vitejs.dev/config/
@@ -60,12 +59,6 @@ export default defineConfig({
     Icons({
       autoInstall: true,
     }),
-    createSvgIconsPlugin({
-      // 指定要缓存的图标文件夹
-      iconDirs: [path.resolve(process.cwd(), "src/icons")],
-      // 执行icon name的格式
-      symbolId: "icon-[dir]-[name]",
-    }),
   ],
   build: {
     chunkSizeWarningLimit: 10000, //消除触发警告的 chunk, 默认500k
@@ -81,10 +74,10 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     proxy: {
-      "/dev-api": {
+      "/czwspfDeclare": {
         target: "http://xzsp-paishui-dev-back.cnsaas.com",
+        // target: "http://psxk.one.sipac.gov.cn",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dev-api/, "")
       },
     },
   },
